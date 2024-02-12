@@ -1,7 +1,7 @@
 package k8s
 
 import (
-	"github.com/gigurra/kdump/internal/errh"
+	"github.com/rockerfinance/kdump/internal/errh"
 	"github.com/samber/lo"
 	"io"
 	"log"

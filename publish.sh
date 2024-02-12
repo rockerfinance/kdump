@@ -8,7 +8,7 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 source build.sh
-export DOCKER_TAG=gigurra/kdump:$VERSION
+export DOCKER_TAG=rockerfinancehub/kdump:$VERSION
 
 echo "Publishing kdump $VERSION"
 
