@@ -5,7 +5,7 @@ go 1.19
 require gopkg.in/yaml.v2 v2.4.0
 
 require (
-	github.com/rockerfinance/go-util v0.1.2
+	github.com/gigurra/go-util v0.1.2
 	github.com/samber/lo v1.37.0
 	github.com/urfave/cli/v2 v2.3.0
 	golang.org/x/exp v0.0.0-20220303212507-bbda1eaf7a17

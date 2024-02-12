@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/rockerfinance/go-util/crypt"
+	"github.com/gigurra/go-util/crypt"
 	"github.com/rockerfinance/kdump/internal/k8s"
 	"github.com/samber/lo"
 	"log"

@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/rockerfinance/go-util/cliUtil"
-	"github.com/rockerfinance/go-util/crypt"
-	"github.com/rockerfinance/go-util/fileutil"
+	"github.com/gigurra/go-util/cliUtil"
+	"github.com/gigurra/go-util/crypt"
+	"github.com/gigurra/go-util/fileutil"
 	"github.com/rockerfinance/kdump/config"
 	"github.com/rockerfinance/kdump/internal/k8s"
 	"github.com/urfave/cli/v2"
