@@ -3,10 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/gigurra/go-util/cliUtil"
-	"github.com/gigurra/go-util/crypt"
 	"github.com/gigurra/go-util/fileutil"
 	"github.com/rockerfinance/kdump/config"
-	"github.com/rockerfinance/kdump/internal/k8s"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -40,7 +38,7 @@ func dumpCurrentContext(appConfig config.AppConfig) {
 
 	log.Printf("Running kdump version " + Version)
 	log.Printf("Checking output dir..")
-	rootOutputDir := ensureRootOutputDir(appConfig)
+	ensureRootOutputDir(appConfig)
 
 	log.Printf("Downloading all resources from current context")
 
