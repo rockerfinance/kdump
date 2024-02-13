@@ -50,6 +50,7 @@ type ApiResourceTypesAccessible struct {
 func ApiResourceTypes() ApiResourceTypesResponse {
 
 	log.Printf("Checking what api resource types are available...\n")
+
 	debugString := RunCommand("kubectl", "get", "nodes", "-v", "10")
 	log.Printf("Debug string: %s\n", debugString)
 

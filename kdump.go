@@ -44,40 +44,40 @@ func dumpCurrentContext(appConfig config.AppConfig) {
 
 	log.Printf("Downloading all resources from current context")
 
-	apiResourceTypes := k8s.ApiResourceTypes()
-	resourcesToDownload := appConfig.FilterIncludedResources(apiResourceTypes.Accessible.All)
+	// apiResourceTypes := k8s.ApiResourceTypes()
+	// resourcesToDownload := appConfig.FilterIncludedResources(apiResourceTypes.Accessible.All)
 
-	log.Printf("Downloading all resources of %d types", len(resourcesToDownload))
-	everythingRaw := k8s.DownloadEverything(resourcesToDownload)
+	// log.Printf("Downloading all resources of %d types", len(resourcesToDownload))
+	// everythingRaw := k8s.DownloadEverything(resourcesToDownload)
 
-	log.Printf("Running kubectl neat on everything.. (this takes about 3-4x the download time)")
-	everything := k8s.PipeToCommand(everythingRaw, "kubectl", "neat")
+	// log.Printf("Running kubectl neat on everything.. (this takes about 3-4x the download time)")
+	// everything := k8s.PipeToCommand(everythingRaw, "kubectl", "neat")
 
-	log.Printf("Parsing %d bytes...\n", len(everything))
+	// log.Printf("Parsing %d bytes...\n", len(everything))
 
-	k8sResources := k8s.ParseResources(everything)
-	k8sResourcesByNamespace := k8s.GroupByNamespace(k8sResources)
+	// k8sResources := k8s.ParseResources(everything)
+	// k8sResourcesByNamespace := k8s.GroupByNamespace(k8sResources)
 
-	log.Printf("Storing %d resources in '%s'...\n", len(k8sResources), rootOutputDir)
-	for namespace, resources := range k8sResourcesByNamespace {
-		outDir := rootOutputDir
-		if namespace != "" {
-			outDir = rootOutputDir + "/" + namespace
-			fileutil.CreateFolderIfNotExists(outDir, "could not create output dir: "+outDir)
-		}
-		for _, resource := range resources {
-			name := fileutil.SanitizePath(resource.MetaData.Name)
-			typ := fileutil.SanitizePath(resource.QualifiedTypeName)
-			filename := name + "." + typ + ".yaml"
-			if resource.IsSecret() {
-				filePath := outDir + "/" + filename + ".aes"
-				fileutil.String2File(filePath, crypt.Encrypt(resource.SourceYaml, appConfig.SecretsEncryptKey))
-			} else {
-				filePath := outDir + "/" + filename
-				fileutil.String2File(filePath, resource.SourceYaml)
-			}
-		}
-	}
+	// log.Printf("Storing %d resources in '%s'...\n", len(k8sResources), rootOutputDir)
+	// for namespace, resources := range k8sResourcesByNamespace {
+	// 	outDir := rootOutputDir
+	// 	if namespace != "" {
+	// 		outDir = rootOutputDir + "/" + namespace
+	// 		fileutil.CreateFolderIfNotExists(outDir, "could not create output dir: "+outDir)
+	// 	}
+	// 	for _, resource := range resources {
+	// 		name := fileutil.SanitizePath(resource.MetaData.Name)
+	// 		typ := fileutil.SanitizePath(resource.QualifiedTypeName)
+	// 		filename := name + "." + typ + ".yaml"
+	// 		if resource.IsSecret() {
+	// 			filePath := outDir + "/" + filename + ".aes"
+	// 			fileutil.String2File(filePath, crypt.Encrypt(resource.SourceYaml, appConfig.SecretsEncryptKey))
+	// 		} else {
+	// 			filePath := outDir + "/" + filename
+	// 			fileutil.String2File(filePath, resource.SourceYaml)
+	// 		}
+	// 	}
+	// }
 }
 
 func ensureRootOutputDir(appConfig config.AppConfig) string {
